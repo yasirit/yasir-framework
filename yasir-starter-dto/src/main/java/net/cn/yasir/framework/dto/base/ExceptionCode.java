@@ -7,7 +7,7 @@ package net.cn.yasir.framework.dto.base;
  * @version 1.0.0
  * @date 2020/1/16
  */
-public class ExceptionCode {
+public class ExceptionCode extends ReturnCode {
 
     public static final ReturnCode SUCCESS = new ReturnCode(1000, "SUCCESS");
 
