@@ -1,6 +1,7 @@
 package net.cn.yasir.framework.restful.config;
 
 import net.cn.yasir.framework.dto.base.ExceptionCode;
+import net.cn.yasir.framework.dto.base.ReturnCode;
 import net.cn.yasir.framework.dto.base.YaSirException;
 import net.cn.yasir.framework.dto.resp.WebJsonRespObj;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ public class GlobalExceptionConfig {
     @ExceptionHandler(value = YaSirException.class)
     public WebJsonRespObj YaSirExceptionHandler(YaSirException e) {
         LOGGER.error("拦截自定义异常：{}", e);
-        return new WebJsonRespObj(e.getCode(), e.getMsg());
+        return new WebJsonRespObj(new ReturnCode(e.getCode(), e.getMsg()));
     }
 
     @ExceptionHandler(value = Exception.class)

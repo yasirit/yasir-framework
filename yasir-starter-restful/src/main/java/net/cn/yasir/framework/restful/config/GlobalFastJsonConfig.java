@@ -6,7 +6,8 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,37 +20,64 @@ import java.util.List;
  * @date 2020/1/16
  */
 @Configuration
-public class GlobalFastJsonConfig extends WebMvcConfigurerAdapter {
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters){
+public class GlobalFastJsonConfig extends WebMvcConfigurationSupport {
 
+    /**
+     * 修改自定义消息转换器
+     * @param converters 消息转换器列表
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         //调用父类的配置
         super.configureMessageConverters(converters);
         //创建fastJson消息转换器
-        FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         //创建配置类
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        //过滤并修改配置返回内容
+        //修改配置返回内容的过滤
         fastJsonConfig.setSerializerFeatures(
-                //List字段如果为null,输出为[],而非null
-                SerializerFeature.WriteNullListAsEmpty,
-                //字符类型字段如果为null,输出为"",而非null
+                //消除对同一对象循环引用
+                SerializerFeature.DisableCircularReferenceDetect,
+                //结果格式化
+//                SerializerFeature.PrettyFormat,
+                //字符类型字段为null,输出为"",而非null
                 SerializerFeature.WriteNullStringAsEmpty,
+                //数值字段如果为null,输出为0,而非null
+                SerializerFeature.WriteNullNumberAsZero,
                 //Boolean字段如果为null,输出为false,而非null
                 SerializerFeature.WriteNullBooleanAsFalse,
-                //消除对同一对象循环引用的问题，默认为false
-                SerializerFeature.DisableCircularReferenceDetect,
-                //Map是否输出值为null的字段,默认为false。
-                SerializerFeature.WriteMapNullValue
+                //全局修改日期格式
+                SerializerFeature.WriteDateUseDateFormat,
+                //按字段名称排序后输出
+//                SerializerFeature.SortField,
+                //Map中key为null不显示
+                SerializerFeature.WriteMapNullValue,
+                //List字段如果为null,输出为[],而非null
+                SerializerFeature.WriteNullListAsEmpty
         );
+        fastConverter.setFastJsonConfig(fastJsonConfig);
         //处理中文乱码问题
-        List<MediaType> fastMediaTypes = new ArrayList<MediaType>();
+        List<MediaType> fastMediaTypes = new ArrayList<>();
         fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
-        fastJsonConverter.setSupportedMediaTypes(fastMediaTypes);
-        fastJsonConverter.setFastJsonConfig(fastJsonConfig);
-        //将fastJsonConverter添加到视图消息转换器列表内
-        converters.add(fastJsonConverter);
+        fastConverter.setSupportedMediaTypes(fastMediaTypes);
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        //将fastjson添加到视图消息转换器列表内
+        converters.add(fastConverter);
+    }
 
+    /**
+     * 继承了WebMvcConfigurationSupport，则需要重新指定静态资源
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations(
+                "classpath:/static/");
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations(
+                "classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations(
+                "classpath:/META-INF/resources/webjars/");
+        super.addResourceHandlers(registry);
     }
 
 }

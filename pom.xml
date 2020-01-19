@@ -43,7 +43,7 @@
         <commons.pool2.version>2.2</commons.pool2.version>
         <okhttp3.version>4.2.2</okhttp3.version>
         <jodd.core.version>3.4.8</jodd.core.version>
-        <ipay.version>2.4.0</ipay.version>
+        <jpay.version>2.4.0</jpay.version>
     </properties>
 
     <dependencyManagement>
@@ -210,10 +210,33 @@
             <!-- pay -->
             <dependency>
                 <groupId>com.github.javen205</groupId>
-                <artifactId>IJPay-All</artifactId>
-                <version>${ipay.version}</version>
+                <artifactId>IJPay-AliPay</artifactId>
+                <version>${jpay.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.javen205</groupId>
+                <artifactId>IJPay-WxPay</artifactId>
+                <version>${jpay.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.javen205</groupId>
+                <artifactId>IJPay-QQ</artifactId>
+                <version>${jpay.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.javen205</groupId>
+                <artifactId>IJPay-JDPay</artifactId>
+                <version>${jpay.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.javen205</groupId>
+                <artifactId>IJPay-UnionPay</artifactId>
+                <version>${jpay.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -45,11 +45,6 @@
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.javen205</groupId>
-            <artifactId>IJPay-All</artifactId>
-        </dependency>
-
     </dependencies>
 
 </project>
