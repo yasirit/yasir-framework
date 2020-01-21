@@ -1,7 +1,6 @@
 package net.cn.yasir.framework.dto.resp;
 
 import lombok.Data;
-import net.cn.yasir.framework.dto.base.ExceptionCode;
 import net.cn.yasir.framework.dto.base.ReturnCode;
 
 import java.util.UUID;
@@ -14,7 +13,7 @@ import java.util.UUID;
  * @date 2020/1/16
  */
 @Data
-public class WebJsonRespObj<T> {
+public class WebJsonObjectResp<T> {
 
     /**
      * uuid
@@ -41,28 +40,28 @@ public class WebJsonRespObj<T> {
      */
     private T data;
 
-    public WebJsonRespObj() {
+    public WebJsonObjectResp() {
         super();
     }
 
-    public WebJsonRespObj(int code, String msg, T data) {
+    public WebJsonObjectResp(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public WebJsonRespObj(T data) {
-        this.code = ExceptionCode.SUCCESS.getCode();
-        this.msg = ExceptionCode.SUCCESS.getMsg();
+    public WebJsonObjectResp(T data) {
+        this.code = ReturnCode.SUCCESS.getCode();
+        this.msg = ReturnCode.SUCCESS.getMsg();
         this.data = data;
     }
 
-    public WebJsonRespObj(ReturnCode returnCode) {
+    public WebJsonObjectResp(ReturnCode returnCode) {
         this.code = returnCode.getCode();
         this.msg = returnCode.getMsg();
     }
 
-    public WebJsonRespObj(ReturnCode returnCode, T data) {
+    public WebJsonObjectResp(ReturnCode returnCode, T data) {
         this.code = returnCode.getCode();
         this.msg = returnCode.getMsg();
         this.data = data;

@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class ReturnCode {
 
+    public static final ReturnCode SUCCESS = new ReturnCode(200, "SUCCESS");
+
     private int code;
 
     private String msg;
@@ -24,4 +26,5 @@ public class ReturnCode {
         this.code = code;
         this.msg = msg;
     }
+
 }

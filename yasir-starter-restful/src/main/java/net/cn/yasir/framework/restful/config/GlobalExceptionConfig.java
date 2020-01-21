@@ -3,7 +3,7 @@ package net.cn.yasir.framework.restful.config;
 import net.cn.yasir.framework.dto.base.ExceptionCode;
 import net.cn.yasir.framework.dto.base.ReturnCode;
 import net.cn.yasir.framework.dto.base.YaSirException;
-import net.cn.yasir.framework.dto.resp.WebJsonRespObj;
+import net.cn.yasir.framework.dto.resp.WebJsonObjectResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,14 +22,14 @@ public class GlobalExceptionConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionConfig.class);
 
     @ExceptionHandler(value = YaSirException.class)
-    public WebJsonRespObj YaSirExceptionHandler(YaSirException e) {
+    public WebJsonObjectResp YaSirExceptionHandler(YaSirException e) {
         LOGGER.error("拦截自定义异常：{}", e);
-        return new WebJsonRespObj(new ReturnCode(e.getCode(), e.getMsg()));
+        return new WebJsonObjectResp(new ReturnCode(e.getCode(), e.getMsg()));
     }
 
     @ExceptionHandler(value = Exception.class)
-    public WebJsonRespObj ErrorHandler(Exception e) {
+    public WebJsonObjectResp ErrorHandler(Exception e) {
         LOGGER.error("拦截系统异常：{}", e);
-        return new WebJsonRespObj(ExceptionCode.SYSTEM_ERROR);
+        return new WebJsonObjectResp(ExceptionCode.SYSTEM_ERROR);
     }
 }

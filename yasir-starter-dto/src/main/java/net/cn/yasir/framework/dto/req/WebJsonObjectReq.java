@@ -7,5 +7,5 @@ package net.cn.yasir.framework.dto.req;
  * @version 1.0.0
  * @date 2020/1/16
  */
-public class WebJsonReqObj<T> {
+public class WebJsonObjectReq<T> {
 }

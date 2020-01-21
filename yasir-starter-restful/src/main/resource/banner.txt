@@ -1,0 +1,6 @@
+ _  _   __    ___  ____  ____
+( \/ ) /__\  / __)(_  _)(  _ \
+ \  / /(__)\ \__ \ _)(_  )   /
+ (__)(__)(__)(___/(____)(_)\_)
+
+ Spring Boot Version: ${spring-boot.version}${spring-boot.formatted-version}

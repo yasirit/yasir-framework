@@ -7,10 +7,6 @@ package net.cn.yasir.framework.dto.base;
  * @version 1.0.0
  * @date 2020/1/16
  */
-public class ExceptionCode extends ReturnCode {
-
-    public static final ReturnCode SUCCESS = new ReturnCode(1000, "SUCCESS");
-
+public class ExceptionCode {
     public static final ReturnCode SYSTEM_ERROR = new ReturnCode(2001, "网络开小差了，请刷新后重试！");
-
 }
