@@ -14,6 +14,7 @@
         <module>yasir-starter-job</module>
         <module>yasir-starter-log</module>
         <module>yasir-starter-dto</module>
+        <module>yasir-starter-mybatis</module>
     </modules>
 
     <properties>
@@ -30,8 +31,10 @@
         <jedis.version>2.9.0</jedis.version>
         <mysql.version>8.0.11</mysql.version>
         <mybatis.plus.version>3.3.0</mybatis.plus.version>
+        <dynamic.datasource.version>2.5.4</dynamic.datasource.version>
+        <velocity.version>2.1</velocity.version>
         <alibaba.fastjson.version>1.2.62</alibaba.fastjson.version>
-        <alibaba.druid.version>1.1.21</alibaba.druid.version>
+        <alibaba.druid.version>1.1.17</alibaba.druid.version>
         <google.guava.version>28.1-jre</google.guava.version>
         <logback.version>1.2.3</logback.version>
         <swagger2.version>2.9.2</swagger2.version>
@@ -91,8 +94,14 @@
             <!-- mybatis -->
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus</artifactId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic.datasource.version}</version>
             </dependency>
 
             <!-- alibaba -->
@@ -101,9 +110,16 @@
                 <artifactId>fastjson</artifactId>
                 <version>${alibaba.fastjson.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
+                <version>${alibaba.druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${alibaba.druid.version}</version>
             </dependency>
 
