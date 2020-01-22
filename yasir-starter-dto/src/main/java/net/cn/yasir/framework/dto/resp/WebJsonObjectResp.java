@@ -31,17 +31,13 @@ public class WebJsonObjectResp<T> {
     private String msg;
 
     /**
-     * 返回值说明
-     */
-    private String desc;
-
-    /**
      * 返回数据
      */
     private T data;
 
-    public WebJsonObjectResp() {
-        super();
+    public WebJsonObjectResp(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 
     public WebJsonObjectResp(int code, String msg, T data) {
@@ -65,6 +61,40 @@ public class WebJsonObjectResp<T> {
         this.code = returnCode.getCode();
         this.msg = returnCode.getMsg();
         this.data = data;
+    }
+
+    public static WebJsonObjectResp.WebJsonObjectRespBuilder builder() {
+        return new WebJsonObjectResp.WebJsonObjectRespBuilder();
+    }
+
+    @Data
+    public static class WebJsonObjectRespBuilder<T> {
+        private int code;
+
+        private String msg;
+
+        private T data;
+
+        WebJsonObjectRespBuilder() {}
+
+        public WebJsonObjectResp.WebJsonObjectRespBuilder code(int code) {
+            this.code = code;
+            return this;
+        }
+
+        public WebJsonObjectResp.WebJsonObjectRespBuilder msg(String msg) {
+            this.msg = msg;
+            return this;
+        }
+
+        public WebJsonObjectResp.WebJsonObjectRespBuilder data(T data) {
+            this.data = data;
+            return this;
+        }
+
+        public WebJsonObjectResp build() {
+            return new WebJsonObjectResp(this.code, this.msg, this.data);
+        }
     }
 
 }

@@ -13,6 +13,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.cn.yasir.framework</groupId>
+            <artifactId>yasir-starter-log</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -53,9 +59,23 @@
         </dependency>
 
         <dependency>
-            <groupId>net.cn.yasir.framework</groupId>
-            <artifactId>yasir-starter-log</artifactId>
-            <version>${parent.version}</version>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
     </dependencies>

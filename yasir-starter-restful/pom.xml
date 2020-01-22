@@ -13,12 +13,6 @@
 
     <dependencies>
 
-        <!--<dependency>-->
-            <!--<groupId>net.cn.yasir.framework</groupId>-->
-            <!--<artifactId>yasir-starter-log</artifactId>-->
-            <!--<version>${parent.version}</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>net.cn.yasir.framework</groupId>
             <artifactId>yasir-starter-dto</artifactId>
