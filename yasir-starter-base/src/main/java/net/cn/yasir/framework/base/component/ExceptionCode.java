@@ -1,4 +1,4 @@
-package net.cn.yasir.framework.dto.base;
+package net.cn.yasir.framework.base.component;
 
 /**
  * 自定义异常码

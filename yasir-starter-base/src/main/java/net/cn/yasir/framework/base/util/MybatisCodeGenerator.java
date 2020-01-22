@@ -1,7 +1,10 @@
-package net.cn.yasir.framework.dto.util;
+package net.cn.yasir.framework.base.util;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 /**
@@ -87,7 +90,7 @@ public class MybatisCodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setSuperEntityClass("net.cn.yasir.framework.entity.BaseEntity");
-        strategy.setSuperControllerClass("net.cn.yasir.framework.dto.resp.BaseResp");
+        strategy.setSuperControllerClass("net.cn.yasir.framework.base.resp.BaseResp");
         strategy.setInclude(includeTable);
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);

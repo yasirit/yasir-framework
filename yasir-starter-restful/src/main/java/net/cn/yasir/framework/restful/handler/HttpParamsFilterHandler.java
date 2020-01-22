@@ -1,6 +1,6 @@
 package net.cn.yasir.framework.restful.handler;
 
-import net.cn.yasir.framework.dto.util.RequestParamsUtil;
+import net.cn.yasir.framework.base.util.RequestParamsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;

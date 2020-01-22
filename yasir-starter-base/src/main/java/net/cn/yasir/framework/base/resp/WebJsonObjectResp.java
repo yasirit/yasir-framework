@@ -1,7 +1,7 @@
-package net.cn.yasir.framework.dto.resp;
+package net.cn.yasir.framework.base.resp;
 
 import lombok.Data;
-import net.cn.yasir.framework.dto.base.ReturnCode;
+import net.cn.yasir.framework.base.component.ReturnCode;
 
 import java.util.UUID;
 

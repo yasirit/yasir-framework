@@ -1,6 +1,6 @@
-package net.cn.yasir.framework.dto.resp;
+package net.cn.yasir.framework.base.resp;
 
-import net.cn.yasir.framework.dto.base.ReturnCode;
+import net.cn.yasir.framework.base.component.ReturnCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

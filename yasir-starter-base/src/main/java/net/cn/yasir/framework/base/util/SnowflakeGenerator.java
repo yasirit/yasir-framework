@@ -1,6 +1,4 @@
-package net.cn.yasir.framework.dto.util;
-
-import java.util.Date;
+package net.cn.yasir.framework.base.util;
 
 /**
  * 雪花ID生成器

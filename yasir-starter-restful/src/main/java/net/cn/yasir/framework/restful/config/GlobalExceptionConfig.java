@@ -1,9 +1,9 @@
 package net.cn.yasir.framework.restful.config;
 
-import net.cn.yasir.framework.dto.base.ExceptionCode;
-import net.cn.yasir.framework.dto.base.ReturnCode;
-import net.cn.yasir.framework.dto.base.YaSirException;
-import net.cn.yasir.framework.dto.resp.WebJsonObjectResp;
+import net.cn.yasir.framework.base.component.ExceptionCode;
+import net.cn.yasir.framework.base.component.ReturnCode;
+import net.cn.yasir.framework.base.component.YaSirException;
+import net.cn.yasir.framework.base.resp.WebJsonObjectResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,7 +1,7 @@
-package net.cn.yasir.framework.dto.enums;
+package net.cn.yasir.framework.base.enums;
 
 import com.google.common.collect.Lists;
-import net.cn.yasir.framework.dto.base.EnumNode;
+import net.cn.yasir.framework.base.component.EnumNode;
 
 import java.util.List;
 

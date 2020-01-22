@@ -13,10 +13,10 @@
         <module>yasir-starter-redis</module>
         <module>yasir-starter-job</module>
         <module>yasir-starter-log</module>
-        <module>yasir-starter-dto</module>
         <module>yasir-starter-mybatis</module>
         <module>yasir-starter-bom</module>
         <module>yasir-starter-entity</module>
+        <module>yasir-starter-base</module>
     </modules>
 
     <properties>

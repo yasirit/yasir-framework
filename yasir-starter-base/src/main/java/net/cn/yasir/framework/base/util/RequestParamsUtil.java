@@ -1,4 +1,4 @@
-package net.cn.yasir.framework.dto.util;
+package net.cn.yasir.framework.base.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;

@@ -1,4 +1,4 @@
-package net.cn.yasir.framework.dto.enums;
+package net.cn.yasir.framework.base.enums;
 
 /**
  * 方法枚举

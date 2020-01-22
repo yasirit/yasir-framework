@@ -15,7 +15,7 @@
 
         <dependency>
             <groupId>net.cn.yasir.framework</groupId>
-            <artifactId>yasir-starter-dto</artifactId>
+            <artifactId>yasir-starter-base</artifactId>
             <version>${parent.version}</version>
         </dependency>
 
