@@ -50,6 +50,7 @@
         <jodd.core.version>3.4.8</jodd.core.version>
         <jpay.version>2.4.0</jpay.version>
         <velocity.version>2.1</velocity.version>
+        <hutool.version>5.1.1</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -268,7 +269,14 @@
                 <artifactId>IJPay-UnionPay</artifactId>
                 <version>${jpay.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
         </dependencies>
+
     </dependencyManagement>
 
     <build>
