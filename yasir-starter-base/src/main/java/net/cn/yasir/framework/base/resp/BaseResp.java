@@ -1,8 +1,11 @@
 package net.cn.yasir.framework.base.resp;
 
 import net.cn.yasir.framework.base.component.ReturnCode;
+import net.cn.yasir.framework.base.model.BaseModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.Serializable;
 
 /**
  * 基础返回处理
@@ -11,7 +14,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0.0
  * @date 2020/1/22
  */
-public class BaseResp {
+public class BaseResp extends BaseModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseResp.class);
 
