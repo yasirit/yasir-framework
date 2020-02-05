@@ -35,10 +35,10 @@ public enum EnableEnum {
         }
     }
 
-    public static String getDescByValue(String value) {
+    public static String getDescByValue(int value) {
         for(int i = 0; i < enumNodeList.size(); i++) {
             EnumNode<Integer, String> enumNode = enumNodeList.get(i);
-            if(value.equals(enumNode.getValue())) {
+            if(enumNode.getValue() == value) {
                 return enumNode.getDesc();
             }
         }
