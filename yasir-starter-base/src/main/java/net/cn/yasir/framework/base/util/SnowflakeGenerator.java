@@ -75,11 +75,18 @@ public class SnowflakeGenerator {
     }
 
     // ==============================Methods==========================================
+    public String nextCode() {
+        return nextId("");
+    }
+
+    public String nextCode(String pre) {
+        return nextId(pre);
+    }
     /**
      * 获得下一个ID (该方法是线程安全的)
      * @return SnowflakeId
      */
-    public synchronized long nextId() {
+    private synchronized String nextId(String pre) {
         long timestamp = timeGen();
 
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
@@ -105,10 +112,11 @@ public class SnowflakeGenerator {
         lastTimestamp = timestamp;
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - twepoch) << timestampLeftShift)
+        long id = ((timestamp - twepoch) << timestampLeftShift)
                 | (datacenterId << datacenterIdShift)
                 | (workerId << workerIdShift)
                 | sequence;
+        return pre + id;
     }
 
     /**
@@ -150,6 +158,6 @@ public class SnowflakeGenerator {
     //==============================Test=============================================
     /** Test */
     public static void main(String[] args) {
-        System.out.println(SnowflakeGenerator.getInstance().nextId());
+        System.out.println(SnowflakeGenerator.getInstance().nextId(""));
     }
 }
