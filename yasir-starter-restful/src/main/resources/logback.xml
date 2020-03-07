@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <!--<property resource="application.yml" />-->
-    <property name="log.moduleName" value="${spring.application.name}" /> <!-- 模块名称， 影响日志配置名，日志文件名 -->
+    <property resource="application.properties" />
     <property name="log.max.size" value="100MB" /> <!-- 日志文件大小 -->
     <property name="log.keep.day" value="7" /> <!-- 日志保留天数 -->
     <property name="log_home" value="${user.dir}/logs" /> <!-- 日志根目录 -->
+    <property name="log_moduleName" value="${spring.application.name}" /><!-- 模块名称， 影响日志配置名，日志文件名 -->
+    <property name="log_level" value="${log.level}" /><!-- 模块名称， 影响日志配置名，日志文件名 -->
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -17,7 +18,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-            <FileNamePattern>${log_home}/${log.moduleName}.%d{yyyy-MM-dd}s.log</FileNamePattern>
+            <FileNamePattern>${log_home}/${log_moduleName}.%d{yyyy-MM-dd}s.log</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>${log.keep.day}</MaxHistory>
         </rollingPolicy>
@@ -32,7 +33,7 @@
     </appender>
 
     <!-- 日志输出级别 -->
-    <root level="info">
+    <root level="${log_level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>
