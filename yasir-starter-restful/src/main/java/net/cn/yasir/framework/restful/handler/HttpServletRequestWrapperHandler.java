@@ -1,6 +1,6 @@
 package net.cn.yasir.framework.restful.handler;
 
-import jodd.io.StreamUtil;
+import cn.hutool.core.io.IoUtil;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
@@ -25,7 +25,7 @@ public class HttpServletRequestWrapperHandler extends HttpServletRequestWrapper 
     public HttpServletRequestWrapperHandler(HttpServletRequest request)
             throws IOException {
         super(request);
-        body = StreamUtil.readBytes(request.getReader(), "utf-8");
+        body = IoUtil.readBytes(request.getInputStream());
     }
 
     @Override

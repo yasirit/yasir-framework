@@ -1,6 +1,6 @@
 package net.cn.yasir.framework.restful.config;
 
-import net.cn.yasir.framework.base.enums.ProfilesEnum;
+import net.cn.yasir.framework.restful.enums.ProfilesEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
