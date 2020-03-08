@@ -3,9 +3,14 @@ package net.cn.yasir.framework.restful.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -13,17 +18,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 自定义JSON转换
+ * 全局处理器
  *
  * @author 沈益鑫
  * @version 1.0.0
  * @date 2020/1/16
  */
 @Configuration
-public class GlobalFastJsonConfig extends WebMvcConfigurationSupport {
+public class GlobalConfig extends WebMvcConfigurationSupport {
 
     /**
-     * 修改自定义消息转换器
+     * 不拦截的路径
+     */
+    @Value(value = "${excludePath:/api/ept/**}")
+    private String excludePath;
+
+    /**
+     * 拦截的路径
+     */
+    @Value(value = "${interceptPath:/api/ict/**}")
+    private String interceptPath;
+
+    /**
+     * 自定义消息转换器
      * @param converters 消息转换器列表
      */
     @Override
@@ -39,7 +56,7 @@ public class GlobalFastJsonConfig extends WebMvcConfigurationSupport {
                 //消除对同一对象循环引用
                 SerializerFeature.DisableCircularReferenceDetect,
                 //结果格式化
-//                SerializerFeature.PrettyFormat,
+                SerializerFeature.PrettyFormat,
                 //字符类型字段为null,输出为"",而非null
                 SerializerFeature.WriteNullStringAsEmpty,
                 //数值字段如果为null,输出为0,而非null
@@ -49,7 +66,7 @@ public class GlobalFastJsonConfig extends WebMvcConfigurationSupport {
                 //全局修改日期格式
                 SerializerFeature.WriteDateUseDateFormat,
                 //按字段名称排序后输出
-//                SerializerFeature.SortField,
+                SerializerFeature.SortField,
                 //Map中key为null不显示
                 SerializerFeature.WriteMapNullValue,
                 //List字段如果为null,输出为[],而非null
@@ -66,7 +83,7 @@ public class GlobalFastJsonConfig extends WebMvcConfigurationSupport {
     }
 
     /**
-     * 继承了WebMvcConfigurationSupport，则需要重新指定静态资源
+     * 指定静态资源
      * @param registry
      */
     @Override
@@ -78,6 +95,28 @@ public class GlobalFastJsonConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/webjars/**").addResourceLocations(
                 "classpath:/META-INF/resources/webjars/");
         super.addResourceHandlers(registry);
+    }
+
+    @Bean
+    public CorsFilter registerCorsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", buildCorsConfig());
+        return new CorsFilter(source);
+    }
+
+    /**
+     * 跨域配置
+     * @return
+     */
+    private CorsConfiguration buildCorsConfig() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        // 1允许任何域名使用
+        corsConfiguration.addAllowedOrigin("*");
+        // 2允许任何头
+        corsConfiguration.addAllowedHeader("*");
+        // 3允许任何方法（post、get等）
+        corsConfiguration.addAllowedMethod("*");
+        return corsConfiguration;
     }
 
 }

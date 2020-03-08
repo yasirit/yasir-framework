@@ -1,5 +1,7 @@
 package net.cn.yasir.framework.restful.common;
 
+import java.io.Serializable;
+
 /**
  * 返回码
  *
@@ -7,7 +9,7 @@ package net.cn.yasir.framework.restful.common;
  * @version 1.0.0
  * @date 2020/1/16
  */
-public class ReturnCode {
+public class ReturnCode implements Serializable {
 
     private int code;
 

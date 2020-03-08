@@ -1,5 +1,6 @@
 package net.cn.yasir.framework.restful.common;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -9,7 +10,7 @@ import java.util.UUID;
  * @version 1.0.0
  * @date 2020/1/16
  */
-public class WebJsonObjectResp<T> {
+public class WebJsonObjectResp<T> implements Serializable {
 
     /**
      * uuid
