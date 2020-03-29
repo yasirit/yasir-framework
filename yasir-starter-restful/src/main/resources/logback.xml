@@ -4,7 +4,7 @@
     <property resource="application.properties" />
     <property name="log.max.size" value="100MB" /> <!-- 日志文件大小 -->
     <property name="log.keep.day" value="7" /> <!-- 日志保留天数 -->
-    <property name="log_home" value="${user.dir}/logs" /> <!-- 日志根目录 -->
+    <property name="log_home" value="${log.home}/logs" /> <!-- 日志根目录 -->
     <property name="log_moduleName" value="${spring.application.name}" /><!-- 模块名称， 影响日志配置名，日志文件名 -->
     <property name="log_level" value="${log.level}" /><!-- 模块名称， 影响日志配置名，日志文件名 -->
     <!-- 控制台输出 -->

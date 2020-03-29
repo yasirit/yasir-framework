@@ -28,18 +28,6 @@ import java.util.List;
 public class GlobalConfig extends WebMvcConfigurationSupport {
 
     /**
-     * 不拦截的路径
-     */
-    @Value(value = "${excludePath:/api/ept/**}")
-    private String excludePath;
-
-    /**
-     * 拦截的路径
-     */
-    @Value(value = "${interceptPath:/api/ict/**}")
-    private String interceptPath;
-
-    /**
      * 自定义消息转换器
      * @param converters 消息转换器列表
      */

@@ -1,20 +1,17 @@
 package net.cn.yasir.framework.restful.config;
 
 import com.alibaba.fastjson.JSONObject;
-import net.cn.yasir.framework.restful.handler.HttpServletRequestWrapperHandler;
-import net.cn.yasir.framework.restful.util.RequestParamsUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -46,13 +43,15 @@ public class HttpParamsAspectConfig {
         String httpIP = request.getRemoteAddr();
         String httpMethod = request.getMethod();
         String httpUri = request.getRequestURI();
-        String httpParams = "{}";
-        ServletRequest requestWrapper = new HttpServletRequestWrapperHandler(request);
-        if(HttpMethod.POST.name().equals(httpMethod.toUpperCase())) {
-            httpParams = RequestParamsUtil.postParams((HttpServletRequest) requestWrapper);
-        } else {
-            httpParams = RequestParamsUtil.getParams((HttpServletRequest) requestWrapper);
-        }
+        Object[] objs = joinPoint.getArgs();
+        String httpParams = Objects.isNull(objs) ? "" : JSONObject.toJSONString(objs);
+
+//        ServletRequest requestWrapper = new HttpServletRequestWrapperHandler(request);
+//        if(HttpMethod.POST.name().equals(httpMethod.toUpperCase())) {
+//            httpParams = RequestParamsUtil.postParams((HttpServletRequest) requestWrapper);
+//        } else {
+//            httpParams = RequestParamsUtil.getParams((HttpServletRequest) requestWrapper);
+//        }
         LOGGER.info("Acceptance of request, uuid={}, ip={}, method={}, path={}, params={}", httpUUID, httpIP, httpMethod, httpUri, httpParams);
         HttpServletResponse response = attributes.getResponse();
         response.setHeader("http_uuid", httpUUID);

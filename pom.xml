@@ -2,87 +2,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>net.cn.yasir.pom</groupId>
+        <artifactId>yasir-parent-pom</artifactId>
+        <version>1.0-RELEASE</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.cn.yasir.framework</groupId>
     <artifactId>yasir-framework</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
 
-    <description>Yasir Framework</description>
-    <developers>
-        <developer>
-            <name>Yasir</name>
-            <email>17600249067@163.com</email>
-            <organization>Yasir</organization>
-            <organizationUrl>http://www.yasirit.top</organizationUrl>
-        </developer>
-    </developers>
+    <name>Yasir Framework</name>
+    <description>框架搭建</description>
     <modules>
         <module>yasir-starter-restful</module>
         <module>yasir-starter-redis</module>
         <module>yasir-starter-job</module>
         <module>yasir-starter-mybatis</module>
-        <module>yasir-starter-util</module>
-        <module>yasir-starter-mybatis-entity</module>
+        <module>yasir-starter-tool</module>
+        <module>yasir-starter-log</module>
     </modules>
-
-    <properties>
-        <java.version>1.8</java.version>
-        <project.encoding>UTF-8</project.encoding>
-        <maven.release.version>2.5.3</maven.release.version>
-        <maven.deploy.version>2.7</maven.deploy.version>
-        <maven.javadoc.version>3.0.0</maven.javadoc.version>
-        <maven.compiler.version>3.3</maven.compiler.version>
-        <maven.source.version>2.2.1</maven.source.version>
-        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
-        <spring.cloud.version>Finchley.SR4</spring.cloud.version>
-        <jackson.version>2.10.2</jackson.version>
-        <jedis.version>2.9.0</jedis.version>
-        <mysql.version>8.0.11</mysql.version>
-        <mybatis.plus.version>3.3.0</mybatis.plus.version>
-        <dynamic.datasource.version>2.5.4</dynamic.datasource.version>
-        <velocity.version>2.1</velocity.version>
-        <alibaba.fastjson.version>1.2.62</alibaba.fastjson.version>
-        <alibaba.druid.version>1.1.17</alibaba.druid.version>
-        <google.guava.version>28.1-jre</google.guava.version>
-        <logback.version>1.2.3</logback.version>
-        <swagger2.version>2.9.2</swagger2.version>
-        <lombok.version>1.18.8</lombok.version>
-        <easypoi-version>3.2.0</easypoi-version>
-        <xxl.job.version>2.1.2</xxl.job.version>
-        <pinyin4j.version>2.5.1</pinyin4j.version>
-        <commons.lang.version>2.6</commons.lang.version>
-        <commons.pool2.version>2.2</commons.pool2.version>
-        <okhttp3.version>4.2.2</okhttp3.version>
-        <jodd.core.version>3.4.8</jodd.core.version>
-        <jpay.version>2.4.0</jpay.version>
-        <velocity.version>2.1</velocity.version>
-        <hutool.version>5.2.0</hutool.version>
-        <hikaricp.version>3.3.1</hikaricp.version>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- springframework -->
-            <!-- spring-boot -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- spring-cloud -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <finalName>${project.name}</finalName>
@@ -90,7 +33,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>3.0.0-M1</version>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
@@ -98,9 +40,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
                 <configuration>
-                    <encoding>${project.encoding}</encoding>
+                    <encoding>${encoding.version}</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
@@ -108,15 +49,29 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.0.0-M1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.0</version>
             </plugin>
         </plugins>
-    </build>
 
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>
