@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.MessageFormat;
 
 /**
  * @desc: Yasir
@@ -57,7 +58,7 @@ public class YasirUtil {
      * @return
      */
     public static ReturnCode msgFormat(ReturnCode source, String... str) {
-        source.setMsg(String.format(source.getMsg(), str));
+        source.setMsg(MessageFormat.format(source.getMsg(), str));
         return source;
     }
 }
