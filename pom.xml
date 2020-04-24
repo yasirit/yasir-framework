@@ -25,6 +25,7 @@
         <module>yasir-starter-mybatis</module>
         <module>yasir-starter-tool</module>
         <module>yasir-starter-log</module>
+        <module>yasir-starter-es</module>
     </modules>
 
     <build>

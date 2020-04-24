@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+net.cn.yasir.framework.restful.config.GlobalConfig,\
+net.cn.yasir.framework.restful.config.GlobalExceptionConfig,\
+net.cn.yasir.framework.restful.config.HttpParamsAspectConfig,\
+net.cn.yasir.framework.restful.config.Swagger2Config

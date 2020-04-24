@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @version 1.0.0
  * @date 2020/1/16
  */
-@Configuration
+//@Configuration
 @EnableSwagger2
 public class Swagger2Config {
 

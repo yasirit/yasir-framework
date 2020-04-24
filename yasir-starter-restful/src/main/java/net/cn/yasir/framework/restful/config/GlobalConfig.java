@@ -24,7 +24,7 @@ import java.util.List;
  * @version 1.0.0
  * @date 2020/1/16
  */
-@Configuration
+//@Configuration
 public class GlobalConfig extends WebMvcConfigurationSupport {
 
     /**
