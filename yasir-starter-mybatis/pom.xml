@@ -30,7 +30,7 @@
         <dependency>
             <groupId>net.cn.yasir.framework</groupId>
             <artifactId>yasir-starter-tool</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 
