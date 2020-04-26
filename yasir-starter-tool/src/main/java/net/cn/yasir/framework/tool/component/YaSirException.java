@@ -1,5 +1,7 @@
 package net.cn.yasir.framework.tool.component;
 
+import java.text.MessageFormat;
+
 /**
  * 自定义异常类
  *
@@ -27,6 +29,12 @@ public class YaSirException extends RuntimeException {
         super();
         this.code = returnCode.getCode();
         this.msg = returnCode.getMsg();
+    }
+
+    public YaSirException(ReturnCode returnCode, String... args) {
+        super();
+        this.code = returnCode.getCode();
+        this.msg = MessageFormat.format(returnCode.getMsg(), args);
     }
 
 
