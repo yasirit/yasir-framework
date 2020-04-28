@@ -1,9 +1,12 @@
-package net.cn.yasir.framework.restful.config;
+package net.cn.yasir.framework.swagger.config;
 
-import net.cn.yasir.framework.tool.enums.ProfilesEnum;
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
+import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -13,18 +16,18 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Swagger2配置
+ * swagger配置
  *
  * @author 沈益鑫
  * @version 1.0.0
- * @date 2020/1/16
+ * @date 2020/4/28
  */
-//@Configuration
+@Configuration
 @EnableSwagger2
-public class Swagger2Config {
+@EnableKnife4j
+@Import(BeanValidatorPluginsConfiguration.class)
+public class SwaggerConfig {
 
-    @Value("${spring.profiles:dev}")
-    private String profiles;
     @Value("${swagger.title:微服务接口}")
     private String title;
     @Value("${swagger.description:微服务接口文档}")
@@ -37,21 +40,24 @@ public class Swagger2Config {
     private String apis;
 
     @Bean
-    public Docket createRestApi() {
-        Docket docket;
-        if(ProfilesEnum.PROD.getValue().equals(profiles)) {
-            docket = (new Docket(DocumentationType.SWAGGER_2))
-                    .select()
-                    .paths(PathSelectors.none())
-                    .build();
-        } else {
-            docket = new Docket(DocumentationType.SWAGGER_2)
-                    .apiInfo(apiInfo())
-                    .select()
-                    .paths(PathSelectors.any())
-                    .apis(RequestHandlerSelectors.basePackage(this.apis))
-                    .build();
-        }
+    @Profile({"dev", "sit", "uat"})
+    public Docket enableRestApi() {
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage(this.apis))
+                .build();
+        return docket;
+    }
+
+    @Bean
+    @Profile({"prod"})
+    public Docket disableRestApi() {
+        Docket docket = (new Docket(DocumentationType.SWAGGER_2))
+                .select()
+                .paths(PathSelectors.none())
+                .build();
         return docket;
     }
 
@@ -63,4 +69,5 @@ public class Swagger2Config {
                 .version(this.version)
                 .build();
     }
+
 }

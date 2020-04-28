@@ -25,7 +25,7 @@ public class HttpParamsAspectConfig {
 
     private static Logger LOGGER = LoggerFactory.getLogger(HttpParamsAspectConfig.class);
 
-    private static List<String> inUris = Lists.newArrayList("/api/");
+    private static List<String> exUris = Lists.newArrayList("/doc.html", "/api-docs", "/swagger", "/error");
 
     @Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping) " +
             "|| @annotation(org.springframework.web.bind.annotation.GetMapping) " +
@@ -42,10 +42,8 @@ public class HttpParamsAspectConfig {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String httpUri = request.getRequestURI();
-        for(int i = 0; i < inUris.size(); i++) {
-            if(!httpUri.contains(inUris.get(i))) {
-                return;
-            }
+        if(checkExUri(httpUri)) {
+            return;
         }
         String httpIP = request.getRemoteAddr();
         String httpUUID = UUID.randomUUID().toString();
@@ -66,10 +64,8 @@ public class HttpParamsAspectConfig {
         HttpServletResponse response = attributes.getResponse();
         HttpServletRequest request = attributes.getRequest();
         String httpUri = request.getRequestURI();
-        for(int i = 0; i < inUris.size(); i++) {
-            if(!httpUri.contains(inUris.get(i))) {
-                return;
-            }
+        if(checkExUri(httpUri)) {
+            return;
         }
         String httpUUID = response.getHeader("http_uuid");
         long httpStart = Long.valueOf(response.getHeader("http_start"));
@@ -79,5 +75,18 @@ public class HttpParamsAspectConfig {
         LOGGER.info("Acceptance of response, uuid={}, result={}, time={}ms", httpUUID, JSONObject.toJSONString(ret), time);
     }
 
+    /**
+     * 校验uri
+     * @param uri
+     * @return
+     */
+    private boolean checkExUri(String uri) {
+        for(int i = 0; i < exUris.size(); i++) {
+            if(uri.contains(exUris.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

@@ -26,6 +26,8 @@
         <module>yasir-starter-tool</module>
         <module>yasir-starter-log</module>
         <module>yasir-starter-es</module>
+        <module>yasir-starter-mq</module>
+        <module>yasir-starter-swagger</module>
     </modules>
 
     <build>
