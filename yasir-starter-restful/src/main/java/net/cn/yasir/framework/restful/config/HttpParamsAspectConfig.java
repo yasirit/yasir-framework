@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -21,6 +22,7 @@ import java.util.UUID;
  * @date: 2020/3/8 13:15
  */
 @Aspect
+@Component
 public class HttpParamsAspectConfig {
 
     private static Logger LOGGER = LoggerFactory.getLogger(HttpParamsAspectConfig.class);

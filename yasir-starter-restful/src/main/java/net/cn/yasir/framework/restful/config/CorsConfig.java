@@ -2,6 +2,7 @@ package net.cn.yasir.framework.restful.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -13,6 +14,7 @@ import org.springframework.web.filter.CorsFilter;
  * @version 1.0.0
  * @date 2020/1/16
  */
+@Configuration
 public class CorsConfig {
 
     @Value("${cors.path:/**}")

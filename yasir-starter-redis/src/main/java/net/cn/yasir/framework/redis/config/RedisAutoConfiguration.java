@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
@@ -22,6 +23,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @version 1.0.0
  * @date 2020/4/24
  */
+@Configuration
 public class RedisAutoConfiguration {
 
     public RedisAutoConfiguration() {}
