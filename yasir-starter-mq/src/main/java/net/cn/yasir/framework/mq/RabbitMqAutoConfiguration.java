@@ -1,9 +1,7 @@
 package net.cn.yasir.framework.mq;
 
-import net.cn.yasir.framework.mq.config.ProducerFactoryBean;
 import net.cn.yasir.framework.mq.config.RabbitMqProducerInitializePostProcessor;
 import net.cn.yasir.framework.mq.config.RabbitMqPublisher;
-import net.cn.yasir.framework.mq.converter.MessageConvertBuilder;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;

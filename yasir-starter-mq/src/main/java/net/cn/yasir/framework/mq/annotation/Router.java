@@ -19,12 +19,6 @@ import java.lang.annotation.Target;
 public @interface Router {
 
     /**
-     * 交换机
-     * @return
-     */
-    String exchange();
-
-    /**
      * 路由地址
      * @return
      */
