@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-net.cn.yasir.framework.redis.config.RedisAutoConfiguration
+net.cn.yasir.framework.redis.RedisAutoConfiguration

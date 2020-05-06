@@ -1,4 +1,4 @@
-package net.cn.yasir.framework.job.auto;
+package net.cn.yasir.framework.job;
 
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import net.cn.yasir.framework.job.properities.XxlJobProperties;

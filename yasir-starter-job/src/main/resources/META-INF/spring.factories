@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-net.cn.yasir.framework.job.auto.XxlJobAutoConfiguration
+net.cn.yasir.framework.job.XxlJobAutoConfiguration
