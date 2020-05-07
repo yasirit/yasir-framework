@@ -28,6 +28,9 @@
         <module>yasir-starter-es</module>
         <module>yasir-starter-mq</module>
         <module>yasir-starter-swagger</module>
+        <module>yasir-starter-nacos-spring-cloud</module>
+        <module>yasir-starter-nacos-dubbo</module>
+        <module>yasir-starter-nacos-spring-boot</module>
     </modules>
 
     <build>
