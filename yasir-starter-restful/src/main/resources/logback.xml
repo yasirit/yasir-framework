@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property resource="application.properties" />
-    <property name="log.max.size" value="100MB" /> <!-- 日志文件大小 -->
-    <property name="log.keep.day" value="7" /> <!-- 日志保留天数 -->
+    <property resource="bootstrap.properties" />
+    <property name="log_max_size" value="${log.max.size:-100MB}" /> <!-- 日志文件大小 -->
+    <property name="log_keep_day" value="${log.keep.day:-7}" /> <!-- 日志保留天数 -->
     <property name="log_home" value="${log.home:-/data}/logs" /> <!-- 日志根目录 -->
     <property name="log_moduleName" value="${spring.application.name:-project}" /><!-- 模块名称， 影响日志配置名，日志文件名 -->
     <property name="log_level" value="${log.level:-INFO}" /><!-- 模块名称， 影响日志配置名，日志文件名 -->
@@ -20,7 +20,7 @@
             <!--日志文件输出的文件名-->
             <FileNamePattern>${log_home}/${log_moduleName}.%d{yyyy-MM-dd}s.log</FileNamePattern>
             <!--日志文件保留天数-->
-            <MaxHistory>${log.keep.day}</MaxHistory>
+            <MaxHistory>${log_keep_day}</MaxHistory>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
@@ -28,7 +28,7 @@
         </encoder>
         <!--日志文件最大的大小-->
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <MaxFileSize>${log.max.size}</MaxFileSize>
+            <MaxFileSize>${log_max_size}</MaxFileSize>
         </triggeringPolicy>
     </appender>
 

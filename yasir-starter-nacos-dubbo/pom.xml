@@ -11,5 +11,17 @@
 
     <artifactId>yasir-starter-nacos-dubbo</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.spring</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>
