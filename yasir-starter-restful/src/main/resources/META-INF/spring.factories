@@ -1,5 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-net.cn.yasir.framework.restful.config.GlobalExceptionConfig,\
-net.cn.yasir.framework.restful.config.HttpParamsAspectConfig,\
-net.cn.yasir.framework.restful.config.CorsConfig,\
-net.cn.yasir.framework.restful.config.FastJsonConfig
+net.cn.yasir.framework.restful.RestFulAutoConfiguration

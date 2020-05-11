@@ -1,4 +1,4 @@
-package net.cn.yasir.framework.restful.config;
+package net.cn.yasir.framework.restful.handler;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -17,13 +17,13 @@ import java.util.List;
  * @version 1.0.0
  * @date 2020/4/28
  */
-@Configuration
-public class FastJsonConfig  {
+//@Configuration
+public class FastJsonHandler  {
 
-    @Bean
-    public HttpMessageConverters httpMessageConverters() {
-        return new HttpMessageConverters(formatHttpMessageConverter());
-    }
+//    @Bean
+//    public HttpMessageConverters httpMessageConverters() {
+//        return new HttpMessageConverters(formatHttpMessageConverter());
+//    }
 
     public static FastJsonHttpMessageConverter formatHttpMessageConverter () {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();

@@ -22,7 +22,6 @@ import java.util.UUID;
  * @date: 2020/3/8 13:15
  */
 @Aspect
-@Component
 public class HttpParamsAspectConfig {
 
     private static Logger LOGGER = LoggerFactory.getLogger(HttpParamsAspectConfig.class);

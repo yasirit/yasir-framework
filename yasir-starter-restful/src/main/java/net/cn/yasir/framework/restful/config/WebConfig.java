@@ -5,6 +5,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import java.util.List;
 
+import static net.cn.yasir.framework.restful.handler.FastJsonHandler.formatHttpMessageConverter;
+
 /**
  * 若是继承WebMvcConfigurationSupport,需指定静态资源
  * 项目中不继承WebMvcConfigurationSupport，继承WebConfig
@@ -23,7 +25,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
         //调用父类的配置
         super.configureMessageConverters(converters);
         //将FastJson添加到视图消息转换器列表内
-        converters.add(FastJsonConfig.formatHttpMessageConverter());
+        converters.add(formatHttpMessageConverter());
     }
 
     /**

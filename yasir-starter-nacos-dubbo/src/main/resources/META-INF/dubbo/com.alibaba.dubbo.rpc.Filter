@@ -1,0 +1,2 @@
+producerSetContextFilter=net.cn.yasir.framework.nacos.dubbo.filter.ProducerSetContextFilter
+consumerGetContextFilter=net.cn.yasir.framework.nacos.dubbo.filter.ConsumerGetContextFilter
