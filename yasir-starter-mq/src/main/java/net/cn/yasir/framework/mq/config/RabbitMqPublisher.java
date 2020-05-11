@@ -5,7 +5,6 @@ import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
-import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
@@ -20,27 +19,27 @@ import java.util.Objects;
  */
 public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements RabbitPublisher<T, M> {
 
-    private ApplicationContext applicationContext;
-
     private MessageConverter messageConverter;
+
+    private RabbitTemplate rabbitTemplate;
 
     MessageProperties messageProperties = new MessageProperties();
 
-    public RabbitMqPublisher(ApplicationContext applicationContext, MessageConverter messageConverter) {
-        this.applicationContext = applicationContext;
+    public RabbitMqPublisher(MessageConverter messageConverter, RabbitTemplate rabbitTemplate) {
         this.messageConverter = messageConverter;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Override
-    public void publish(M m, CorrelationData correlationData, RabbitTemplate.ConfirmCallback confirmCallback) {
+    public void publish(M m, CorrelationData correlationData) {
         this.checkMessage(m);
-        this.doPublish(m, correlationData, confirmCallback);
+        this.doPublish(m, correlationData);
     }
 
     @Override
     public void publish(M m) {
         this.checkMessage(m);
-        this.doPublish(m, null, null);
+        this.doPublish(m, null);
     }
 
     private void checkMessage(M message) {
@@ -61,10 +60,8 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements RabbitP
      * 发布消息
      * @param m
      * @param correlationData
-     * @param confirmCallback
      */
-    private void doPublish(M m, CorrelationData correlationData, RabbitTemplate.ConfirmCallback confirmCallback) {
-        RabbitTemplate rabbitTemplate = applicationContext.getBean(RabbitTemplate.class);
+    private void doPublish(M m, CorrelationData correlationData) {
         String exchange = m.getExchange();
         String routeKey = m.getRouteKey();
         Message message = this.messageConverter.toMessage(m.getData(), messageProperties);

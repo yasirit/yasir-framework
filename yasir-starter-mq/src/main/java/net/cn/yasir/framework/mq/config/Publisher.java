@@ -10,11 +10,11 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
  * @version 1.0.0
  * @date 2020/4/30
  */
-public interface Publisher<T> {
+public interface Publisher<M> {
     /**
      * 发布
-     * @param t
+     * @param m
      */
-    void publish(T t);
+    void publish(M m);
 
 }

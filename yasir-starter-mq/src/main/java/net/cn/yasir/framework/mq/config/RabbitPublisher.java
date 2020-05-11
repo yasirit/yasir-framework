@@ -18,8 +18,7 @@ public interface RabbitPublisher<T, M extends RabbitMessage<T>> extends Publishe
      * 发布确认
      * @param message
      * @param correlationData
-     * @param confirmCallback
      */
-    void publish(M message, CorrelationData correlationData, RabbitTemplate.ConfirmCallback confirmCallback);
+    void publish(M message, CorrelationData correlationData);
 
 }
