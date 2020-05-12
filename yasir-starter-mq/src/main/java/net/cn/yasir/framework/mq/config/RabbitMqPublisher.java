@@ -19,14 +19,11 @@ import java.util.Objects;
  */
 public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publisher<M> {
 
-    private MessageConverter messageConverter;
-
     private RabbitTemplate rabbitTemplate;
 
     MessageProperties messageProperties = new MessageProperties();
 
-    public RabbitMqPublisher(MessageConverter messageConverter, RabbitTemplate rabbitTemplate) {
-        this.messageConverter = messageConverter;
+    public RabbitMqPublisher(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
@@ -47,7 +44,7 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publish
             throw new RuntimeException("请配置exchange");
         }
         if(StringUtils.isEmpty(message.getRouteKey())) {
-            throw new RuntimeException("请配置exchange");
+            throw new RuntimeException("请配置routeKey");
         }
         if(Objects.isNull(message.getData())) {
             throw new RuntimeException("消息不能为空");
@@ -64,7 +61,6 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publish
     private void doPublish(M m, CorrelationData correlationData) {
         String exchange = m.getExchange();
         String routeKey = m.getRouteKey();
-        Message message = this.messageConverter.toMessage(m.getData(), messageProperties);
-        rabbitTemplate.convertAndSend(exchange, routeKey, message, correlationData);
+        rabbitTemplate.convertAndSend(exchange, routeKey, m, correlationData);
     }
 }
