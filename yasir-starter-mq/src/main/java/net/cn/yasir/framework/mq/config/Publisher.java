@@ -17,4 +17,11 @@ public interface Publisher<M> {
      */
     void publish(M m);
 
+    /**
+     * 发布确认
+     * @param message
+     * @param correlationData
+     */
+    void publish(M message, CorrelationData correlationData);
+
 }

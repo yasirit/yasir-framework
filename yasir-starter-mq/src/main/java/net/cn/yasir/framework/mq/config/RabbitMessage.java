@@ -17,6 +17,15 @@ public class RabbitMessage<T> {
 
     private T data;
 
+    public RabbitMessage() {
+    }
+
+    public RabbitMessage(String exchange, String routeKey, T data) {
+        this.exchange = exchange;
+        this.routeKey = routeKey;
+        this.data = data;
+    }
+
     public String getExchange() {
         return exchange;
     }

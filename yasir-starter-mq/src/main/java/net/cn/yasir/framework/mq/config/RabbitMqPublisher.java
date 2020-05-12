@@ -17,7 +17,7 @@ import java.util.Objects;
  * @version 1.0.0
  * @date 2020/4/30
  */
-public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements RabbitPublisher<T, M> {
+public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publisher<M> {
 
     private MessageConverter messageConverter;
 
