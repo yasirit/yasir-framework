@@ -32,6 +32,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>net.cn.yasir.framework</groupId>
+            <artifactId>yasir-starter-tool</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 
 

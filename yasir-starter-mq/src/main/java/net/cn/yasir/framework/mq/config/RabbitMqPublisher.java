@@ -5,7 +5,6 @@ import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
-import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
@@ -18,29 +17,26 @@ import java.util.Objects;
  * @version 1.0.0
  * @date 2020/4/30
  */
-public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements RabbitPublisher<T, M> {
+public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publisher<M> {
 
-    private ApplicationContext applicationContext;
-
-    private MessageConverter messageConverter;
+    private RabbitTemplate rabbitTemplate;
 
     MessageProperties messageProperties = new MessageProperties();
 
-    public RabbitMqPublisher(ApplicationContext applicationContext, MessageConverter messageConverter) {
-        this.applicationContext = applicationContext;
-        this.messageConverter = messageConverter;
+    public RabbitMqPublisher(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Override
-    public void publish(M m, CorrelationData correlationData, RabbitTemplate.ConfirmCallback confirmCallback) {
+    public void publish(M m, CorrelationData correlationData) {
         this.checkMessage(m);
-        this.doPublish(m, correlationData, confirmCallback);
+        this.doPublish(m, correlationData);
     }
 
     @Override
     public void publish(M m) {
         this.checkMessage(m);
-        this.doPublish(m, null, null);
+        this.doPublish(m, null);
     }
 
     private void checkMessage(M message) {
@@ -48,7 +44,7 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements RabbitP
             throw new RuntimeException("请配置exchange");
         }
         if(StringUtils.isEmpty(message.getRouteKey())) {
-            throw new RuntimeException("请配置exchange");
+            throw new RuntimeException("请配置routeKey");
         }
         if(Objects.isNull(message.getData())) {
             throw new RuntimeException("消息不能为空");
@@ -61,13 +57,10 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements RabbitP
      * 发布消息
      * @param m
      * @param correlationData
-     * @param confirmCallback
      */
-    private void doPublish(M m, CorrelationData correlationData, RabbitTemplate.ConfirmCallback confirmCallback) {
-        RabbitTemplate rabbitTemplate = applicationContext.getBean(RabbitTemplate.class);
+    private void doPublish(M m, CorrelationData correlationData) {
         String exchange = m.getExchange();
         String routeKey = m.getRouteKey();
-        Message message = this.messageConverter.toMessage(m.getData(), messageProperties);
-        rabbitTemplate.convertAndSend(exchange, routeKey, message, correlationData);
+        rabbitTemplate.convertAndSend(exchange, routeKey, m, correlationData);
     }
 }
