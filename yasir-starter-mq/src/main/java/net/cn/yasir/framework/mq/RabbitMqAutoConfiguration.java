@@ -29,9 +29,6 @@ import java.util.List;
 @Configuration
 public class RabbitMqAutoConfiguration {
 
-    @Autowired
-    private List<ConfirmCallbackHandler> confirmCallbackHandlers;
-
     @Bean
     public NoneConfirmCallback noneConfirmCallback() {
         return new NoneConfirmCallback();

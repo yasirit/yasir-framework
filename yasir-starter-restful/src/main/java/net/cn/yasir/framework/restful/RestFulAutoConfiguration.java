@@ -15,6 +15,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
+import java.util.Objects;
 
 import static net.cn.yasir.framework.restful.handler.FastJsonHandler.formatHttpMessageConverter;
 
@@ -61,13 +62,12 @@ public class RestFulAutoConfiguration {
         return new HttpSetContextFilter();
     }
 
-    @Autowired
-    private List<ClientHttpRequestInterceptor> clientHttpRequestInterceptors;
-
     @Bean
     public RestTemplate restTemplate(List<ClientHttpRequestInterceptor> clientHttpRequestInterceptors) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setInterceptors(clientHttpRequestInterceptors);
+        if(Objects.nonNull(clientHttpRequestInterceptors) && clientHttpRequestInterceptors.size() > 0) {
+            restTemplate.setInterceptors(clientHttpRequestInterceptors);
+        }
         return restTemplate;
     }
 
