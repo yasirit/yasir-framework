@@ -98,7 +98,6 @@ public class RabbitMqAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnSingleCandidate(ConnectionFactory.class)
     public RabbitTemplate rabbitTemplate(RabbitProperties properties,
                                          ObjectProvider<RabbitRetryTemplateCustomizer> retryTemplateCustomizers,
                                          ConnectionFactory connectionFactory,

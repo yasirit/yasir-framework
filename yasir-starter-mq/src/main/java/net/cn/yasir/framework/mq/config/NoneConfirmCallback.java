@@ -1,5 +1,6 @@
 package net.cn.yasir.framework.mq.config;
 
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -21,6 +22,6 @@ public class NoneConfirmCallback implements ConfirmCallbackHandler {
 
     @Override
     public void doIt(CorrelationData correlationData, boolean ack, String cause) {
-        LOGGER.info("nothing to do");
+        LOGGER.info("nothing to do, correlationData:{}, ack:{}, cause:{}", JSON.toJSONString(correlationData), ack, cause);
     }
 }

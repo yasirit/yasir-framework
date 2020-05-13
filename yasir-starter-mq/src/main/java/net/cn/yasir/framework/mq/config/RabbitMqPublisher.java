@@ -36,7 +36,7 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publish
     @Override
     public void publish(M m) {
         this.checkMessage(m);
-        this.doPublish(m, null);
+        this.doPublish(m, new CorrelationDataBuilder().id("none").builder());
     }
 
     private void checkMessage(M message) {
