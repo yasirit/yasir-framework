@@ -1,7 +1,6 @@
 package net.cn.yasir.framework.mq.config;
 
 import org.springframework.amqp.rabbit.connection.CorrelationData;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 /**
  * 发布器

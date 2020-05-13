@@ -1,7 +1,5 @@
 package net.cn.yasir.framework.mq.config;
 
-import java.io.Serializable;
-
 /**
  * RabbitMessage
  *

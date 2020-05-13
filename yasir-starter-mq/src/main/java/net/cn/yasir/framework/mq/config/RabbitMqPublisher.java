@@ -1,10 +1,7 @@
 package net.cn.yasir.framework.mq.config;
 
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
@@ -21,8 +18,6 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publish
 
     private RabbitTemplate rabbitTemplate;
 
-    MessageProperties messageProperties = new MessageProperties();
-
     public RabbitMqPublisher(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
@@ -36,7 +31,7 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publish
     @Override
     public void publish(M m) {
         this.checkMessage(m);
-        this.doPublish(m, new CorrelationDataBuilder().id("none").builder());
+        this.doPublish(m, null);
     }
 
     private void checkMessage(M message) {
@@ -61,6 +56,7 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publish
     private void doPublish(M m, CorrelationData correlationData) {
         String exchange = m.getExchange();
         String routeKey = m.getRouteKey();
-        rabbitTemplate.convertAndSend(exchange, routeKey, m.getData(), correlationData);
+        T data = m.getData();
+        rabbitTemplate.convertAndSend(exchange, routeKey, data, correlationData);
     }
 }
