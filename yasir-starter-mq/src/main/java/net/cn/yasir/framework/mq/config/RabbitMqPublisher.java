@@ -61,6 +61,6 @@ public class RabbitMqPublisher<T, M extends RabbitMessage<T>> implements Publish
     private void doPublish(M m, CorrelationData correlationData) {
         String exchange = m.getExchange();
         String routeKey = m.getRouteKey();
-        rabbitTemplate.convertAndSend(exchange, routeKey, m, correlationData);
+        rabbitTemplate.convertAndSend(exchange, routeKey, m.getData(), correlationData);
     }
 }
