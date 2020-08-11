@@ -3,10 +3,10 @@ package net.cn.yasir.framework.restful;
 import net.cn.yasir.framework.restful.config.GlobalExceptionConfig;
 import net.cn.yasir.framework.restful.config.HttpParamsAspectConfig;
 import net.cn.yasir.framework.restful.filter.HttpSetContextFilter;
-import net.cn.yasir.framework.restful.properities.CorsPeoperities;
+import net.cn.yasir.framework.restful.properities.CorsProperties;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -24,19 +24,18 @@ import static net.cn.yasir.framework.restful.handler.FastJsonHandler.formatHttpM
  * @version 1.0.0
  * @date 2020/5/11
  */
-//@Configuration
+@Configuration
 public class RestFulAutoConfiguration {
 
     @Bean
-    @ConfigurationProperties(prefix = "yasir.cros")
-    public CorsPeoperities corsPeoperities() {
-        return new CorsPeoperities();
+    public CorsProperties corsProperties() {
+        return new CorsProperties();
     }
 
     @Bean
-    public CorsFilter registerCorsFilter(CorsPeoperities corsPeoperities) {
+    public CorsFilter registerCorsFilter(CorsProperties corsProperties) {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration(corsPeoperities.getPath(), corsPeoperities.buildCorsConfig());
+        source.registerCorsConfiguration(corsProperties.getPath(), corsProperties.buildCorsConfig());
         return new CorsFilter(source);
     }
 

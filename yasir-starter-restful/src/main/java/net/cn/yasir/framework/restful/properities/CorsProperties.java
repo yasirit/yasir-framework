@@ -1,15 +1,19 @@
 package net.cn.yasir.framework.restful.properities;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.cors.CorsConfiguration;
 
 /**
- * 跨域配置
+ * 跨域参数配置
  *
  * @author 沈益鑫
  * @version 1.0.0
  * @date 2020/5/11
  */
-public class CorsPeoperities {
+@EnableConfigurationProperties({CorsProperties.class})
+@ConfigurationProperties(prefix = "yasir.cros")
+public class CorsProperties {
 
     private String path = "/**";
 
